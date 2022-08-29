@@ -1,10 +1,10 @@
 import CharacterCard from './CharacterCard';
 
 function CharacterList(props) {
- 
-const characterElement = props.characters.map((character) => {
+ console.log(props);
+const characterElement = props.characters.map((item, index) => {
     return (
-        <CharacterCard character={character}/>
+        <CharacterCard key={index} character={item}/>
     )
 });
 

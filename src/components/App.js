@@ -9,6 +9,7 @@ import {Route, Routes} from "react-router-dom";
 function App() {
 const [characterData, setCharacterData] = useState([]);
 const [filterByName, setFilterByName] = useState("");
+const [filterByHouse, setFilterByHouse] = useState("Gryffindor");
 
 
 useEffect(() => {
@@ -21,17 +22,31 @@ const handleFilterByName = (value) => {
   setFilterByName(value);
 }
 
-const characterFilter = characterData.filter((character) => {
-  return character.name.toLowerCase().includes(filterByName.toLowerCase())
-})
+const handleFilterByHouse = (value) => {
+  setFilterByHouse(value);
+}
 
+
+const characterFilter = characterData
+.filter((item) => {
+  return item.name.toLowerCase().includes(filterByName.toLowerCase())
+})
+.filter((item) => {
+    return item.house === filterByHouse
+  
+})
 
   return (
     <>
 <h1> Harry Potter</h1>
-    <Filters filterByName={filterByName}
+
+
+    <Filters 
+    filterByName={filterByName} 
+    handleFilterByHouse={handleFilterByHouse}
+    filterByHouse={filterByHouse}
     handleFilterByName={handleFilterByName}/>
-    <CharacterList characters={characterData}></CharacterList>
+    <CharacterList characters={characterFilter}/>
   <div className='App'></div>
   </>
   

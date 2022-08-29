@@ -1,17 +1,26 @@
-function FilterByHouse() {
+function FilterByHouse(props) {
+console.log(props);
+    const handleChangeHouse = (event) => {
+        console.log(event.target.value);
+        props.handleFilterByHouse(event.target.value)
+        
+        
+        }    
 
  return (
 <>
             <label
-                className="form__label display-block"
-                for="gender">Selecciona la casa:</label>
+                className="form_house_text"
+                htmlFor="house_text">Selecciona la casa:</label>
             <select
-                class="form__input-text"
-                name="gender"
-                id="gender">
-                <option value="all" selected>Gryffindor</option>
-                <option value="female">Hufflepuff</option>
-                <option value="female">Ravenclaw</option>
+                className="form_house"
+                name="house"
+                id="house"
+                value={props.filterByHouse} 
+                onChange = {handleChangeHouse}>  
+                <option value="Gryffindor" selected>Gryffindor</option>
+                <option value="hufflepuff">Hufflepuff</option>
+                <option value="ravenclaw">Ravenclaw</option>
             </select>
 
         </>
