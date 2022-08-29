@@ -1,5 +1,5 @@
 function getApiData() {
-return fetch("http://hp-api.herokuapp.com/api/characters/house/gryffindor")
+return fetch("http://hp-api.herokuapp.com/api/characters")
     .then((response) => response.json())
     .then((data) => {
 
@@ -20,5 +20,4 @@ return ApiDataNeeded;
 
 });
 };
-
 export default getApiData;

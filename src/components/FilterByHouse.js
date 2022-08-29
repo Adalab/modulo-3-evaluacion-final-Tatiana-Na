@@ -1,8 +1,8 @@
 function FilterByHouse(props) {
-console.log(props);
+
     const handleChangeHouse = (event) => {
-        console.log(event.target.value);
-        props.handleFilterByHouse(event.target.value)
+    
+    return props.handleFilterByHouse(event.target.value);
         
         
         }    
@@ -19,8 +19,8 @@ console.log(props);
                 value={props.filterByHouse} 
                 onChange = {handleChangeHouse}>  
                 <option value="Gryffindor" selected>Gryffindor</option>
-                <option value="hufflepuff">Hufflepuff</option>
-                <option value="ravenclaw">Ravenclaw</option>
+                <option value="Hufflepuff">Hufflepuff</option>
+                <option value="Slytherin">Slytherin</option>
             </select>
 
         </>
