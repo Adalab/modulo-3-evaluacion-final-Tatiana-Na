@@ -1,10 +1,13 @@
 function FilterByName(props) {
  
 const handleChange = (event) => {
-props.handleFilterByName(event.target.value)
-console.log(handleChange);
-
+props.handleFilterByName(event.target.value);
 }
+
+function Form(event) {
+  event.preventDefault();
+}
+
 
 return   (
 <>
@@ -18,10 +21,8 @@ return   (
             id="search"
             value={props.filterByName}
             onChange = {handleChange}
+            onClick={Form}
             
-        
-            
-
           />
            </form>
 </>

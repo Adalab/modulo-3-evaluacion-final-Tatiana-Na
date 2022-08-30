@@ -1,11 +1,14 @@
-
+import { useNavigate } from "react-router-dom";
 
 const CharacterDetail = (props) => {
+
+const navigate = useNavigate();
     
 return (
  <> 
-
+<button onClick={ () => navigate(-1) }>Volver</button>
 <section className="card">
+        
             <a href="#">
                 <img className="img_card" src={props.character.image} 
                 alt={`Foto de ${props.character.name}`}

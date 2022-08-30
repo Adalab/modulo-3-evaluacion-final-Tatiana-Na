@@ -3,11 +3,15 @@ import profileImg from "../images/enplaceholder.png"
 
 function CharacterCard(props) {
 
-/*getImgUrl = (image) =>{ 
-    if (props.character.image === null) { 
+const getImgUrl = () =>{ 
+    if (props.character.image === "") { 
         return <img src={profileImg}/>;
+    }else {
+       return <img className="img_card" src={props.character.image} 
+        alt={`Foto de ${props.character.name}`}
+        title={`Foto de ${props.character.name}`}></img>
     }
-*/
+}
 return (
 <>
     <li className="card">

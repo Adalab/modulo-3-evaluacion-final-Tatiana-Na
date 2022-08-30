@@ -12,7 +12,7 @@ const ApiDataNeeded = data.map((item, index) => {
         species: item.species,
         house: item.house,
         gender: item.gender,
-        status: item.wand.alive,
+        status: item.alive,
     } 
     
 });
