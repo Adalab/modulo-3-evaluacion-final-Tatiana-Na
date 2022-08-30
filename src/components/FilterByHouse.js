@@ -8,7 +8,7 @@ function FilterByHouse(props) {
         }    
 
  return (
-<>
+<form className="form_by_house">
             <label
                 className="form_house_text"
                 htmlFor="house_text">Selecciona la casa:</label>
@@ -18,12 +18,13 @@ function FilterByHouse(props) {
                 id="house"
                 value={props.filterByHouse} 
                 onChange = {handleChangeHouse}>  
-                <option value="Gryffindor" selected>Gryffindor</option>
+                <option value="Gryffindor">Gryffindor</option>
+                <option value="Ravenclaw">Ravenclaw</option>
                 <option value="Hufflepuff">Hufflepuff</option>
                 <option value="Slytherin">Slytherin</option>
             </select>
 
-        </>
+        </form>
 
  );   
 }

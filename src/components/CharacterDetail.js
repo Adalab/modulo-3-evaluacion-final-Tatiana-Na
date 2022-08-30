@@ -1,19 +1,24 @@
-import { Link } from "react-router-dom";
 
-function CharacterDetail(props) {
 
+const CharacterDetail = (props) => {
+    
 return (
-<li className="card">
-            <Link to={`/caracter/${props.character.id}`}>
+ <> 
+
+<section className="card">
+            <a href="#">
                 <img className="img_card" src={props.character.image} 
                 alt={`Foto de ${props.character.name}`}
                 title={`Foto de ${props.character.name}`}></img>
 <h3 className="name_card">{props.character.name}</h3>
 <p className="species_card">{props.character.species}</p>
-            </Link>
+<p className="species_card">{props.character.status}</p>
+<p className="species_card">{props.character.gender}</p>
+<p className="species_card">{props.character.house}</p>
 
-        </li>
-
+</a>
+        </section>
+        </>  
 )
 
 }

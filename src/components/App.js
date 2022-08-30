@@ -1,5 +1,7 @@
 import logo from '../images/logo.svg';
 import '../styles/App.scss';
+import '../styles/core/_reset.scss';
+import logoHeader from "../images/text.png";
 import getApiData from '../services/dataApi';
 import CharacterList from "./CharacterList";
 import Filters from "./Filters";
@@ -11,6 +13,7 @@ function App() {
 const [characterData, setCharacterData] = useState([]);
 const [filterByName, setFilterByName] = useState("");
 const [filterByHouse, setFilterByHouse] = useState("Gryffindor");
+const [filterByGender, setFilterByGender] = useState("all");
 
 
 useEffect(() => {
@@ -29,6 +32,10 @@ const handleFilterByName = (value) => {
 const handleFilterByHouse = (value) => {
   setFilterByHouse(value);
 }
+const handleFilterByGender = (value) => {
+  setFilterByGender(value);
+}
+
 
 
 const characterFilter = characterData
@@ -36,23 +43,40 @@ const characterFilter = characterData
   return item.name.toLowerCase().includes(filterByName.toLowerCase())
 })
 .filter((item) => {
-    return item.house === filterByHouse
-  
+    return item.house === filterByHouse 
 })
-
+.filter((item) => {
+  if(filterByGender === "all") {
+    return true;
+  } else {
+    return item.gender === filterByGender 
+  }
+});
 
 //id del usuario (click)
 
 const { pathname } = useLocation();
 
-const dataPath = matchPath('/caracter/:caracterId', pathname);
+const dataPath = matchPath('/item/:characterId', pathname);
+const caracterId = dataPath !== null ? parseInt(dataPath.params.characterId) : null;
 
-const caracterId = dataPath !== null ? dataPath.params.characterId : null;
-const caracterFound = characterData.find(character=> {return character.id === caracterId});
+const caracterFound = characterData.find(item=> {return item.id === caracterId});
 
-  return (
-    <>
-<h1> Harry Potter</h1>
+
+
+
+const handleClick = () => {
+  setFilterByName("");
+  setFilterByHouse("Gryffindor");
+  setFilterByGender("all");
+};
+
+
+
+
+ return (
+    <div className='main'>
+  <img className='logo_header' src={logoHeader} alt='Harry Potter'></img>  
 
 <Routes>
   <Route
@@ -63,13 +87,17 @@ const caracterFound = characterData.find(character=> {return character.id === ca
     filterByName={filterByName} 
     handleFilterByHouse={handleFilterByHouse}
     filterByHouse={filterByHouse}
-    handleFilterByName={handleFilterByName}/>
-    <CharacterList characters={characterFilter}/> 
+    handleFilterByName={handleFilterByName}
+    filterByGender={filterByGender}
+    handleFilterByGender={handleFilterByGender}/>
+    <button onClick={handleClick}>Reset</button>
+    <CharacterList characters={characterFilter}/>
+     
     </>
   } />
 
 <Route
-path='/caracter/:caracterId'
+path='/item/:characterId'
 element={
   <CharacterDetail character={caracterFound}/>
 }
@@ -77,7 +105,7 @@ element={
 </Routes>
     
   <div className='App'></div>
-  </>
+  </div>
   
   )
 }
